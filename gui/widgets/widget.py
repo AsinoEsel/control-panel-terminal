@@ -2,7 +2,6 @@ import pygame as pg
 from gui.window_manager.window_manager_setup import DEBUG_COLOR, COLOR_ACTIVE, COLOR_INACTIVE, ACCENT_COLOR_ACTIVE, ACCENT_COLOR_INACTIVE, LINE_THICKNESS_THIN, RENDER_WIDTH, RENDER_HEIGHT, DEFAULT_GAP, BACKGROUND_COLOR, CHAR_WIDTH, CHAR_HEIGHT, DEFAULT_FONT
 from gui import utils
 from gui.window_manager.event_queue import event_queue, Delay, Event
-from controlpanel.event_manager import EventActionType, EventValueType
 from controlpanel import api
 
 
@@ -27,7 +26,7 @@ class Widget:
         self.needs_rerender = True
         self.do_render_border = do_render_border
 
-    def fire_event(self, event_name: EventActionType, event_value: EventValueType = None):
+    def fire_event(self, event_name: api.EventActionType, event_value: api.EventValueType = None):
         api.fire_event(self.name, event_name, event_value)
     
     def add_element(self, element: 'Widget', make_active_element: bool = False):
