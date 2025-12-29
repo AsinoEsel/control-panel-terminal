@@ -176,18 +176,11 @@ class STLRenderer(Widget):
         max_bounding_box = max((max_x-min_x), (max_y-min_y), (max_z-min_z))
         self.camera.zoom = 0.9 * min(self.surface.get_width(), self.surface.get_height()) / max_bounding_box
         self.flag_as_needing_rerender()
-    
-    def handle_event(self, event: pg.event.Event):
-        if event.type == pg.KEYDOWN:
-            if event.key == pg.K_d:
-                self.set_model("controlpanel/gui/media/roboter.stl")
-                self.camera.zoom = self.surface.get_height()
-        return super().handle_event(event)
-    
+
     def update(self, tick: int, dt: int, joysticks: dict[int: pg.joystick.JoystickType]):
         degrees_per_second = 45
         if self.active:
-            degrees = degrees_per_second*dt/1000
+            degrees = degrees_per_second*dt
             keys = pg.key.get_pressed()
             if keys[pg.K_LEFT]:
                 self.camera.rotate_left_right(-degrees)
